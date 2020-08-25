@@ -22,7 +22,12 @@ def detail(request, question_id):
 
 
 def result(request, question_id):
-    return HttpResponse(f'you are looking for result question {question_id}')
+    # return HttpResponse(f'you are looking for result question {question_id}')
+    question = get_object_or_404(Question, pk=question_id)
+    context = {
+        'question': question,
+    }
+    return render(request, 'polls/result.html', context)
 
 
 def vote(request, question_id):
